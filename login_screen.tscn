@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://ijrgpygwkcg4"]
+
+[ext_resource type="Script" uid="uid://ceb0mp774lkqr" path="res://login_screen.gd" id="1_7ksck"]
+[ext_resource type="Texture2D" uid="uid://bn7kf86d2hpes" path="res://bg_login.jpg" id="2_jjkfj"]
+
+[node name="LoginScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7ksck")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -133.0
+offset_top = -143.0
+offset_right = 1466.0
+offset_bottom = 757.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jjkfj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 461.0
+offset_top = 274.0
+offset_right = 782.0
+offset_bottom = 472.0
+
+[node name="Username" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+text = "Username"
+
+[node name="Password" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+text = "Password"
+
+[node name="Login" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Login"
+
+[node name="Register" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Register"
+
+[node name="Message" type="Label" parent="VBoxContainer"]
+modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
+layout_mode = 2
+text = "MessageLabel"
+
+[connection signal="pressed" from="VBoxContainer/Login" to="." method="_on_login_pressed"]
+[connection signal="pressed" from="VBoxContainer/Register" to="." method="_on_register_pressed"]

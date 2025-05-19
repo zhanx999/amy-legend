@@ -1,0 +1,128 @@
+[gd_scene load_steps=5 format=3 uid="uid://c67six0smmysu"]
+
+[ext_resource type="VideoStream" uid="uid://j2q8p27isyf4" path="res://vecteezy_love-tunnel-background_2007787.ogv" id="1_0l20w"]
+[ext_resource type="Script" uid="uid://oyr8761345nl" path="res://menu.gd" id="1_qdemu"]
+[ext_resource type="AudioStream" uid="uid://dnxgt4rl5ldrx" path="res://audio/girl-in-red-we-fell-in-love-in-october-76934895_Fgk2fdPI.wav" id="3_cg1py"]
+[ext_resource type="AudioStream" uid="uid://1fbph3r8wvuk" path="res://audio/click-21156.mp3" id="4_x8440"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.0
+offset_top = -324.0
+offset_right = 575.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qdemu")
+
+[node name="background" type="VideoStreamPlayer" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 654.0
+stream = ExtResource("1_0l20w")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -133.0
+offset_right = 102.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 0.3241, 0.258944, 1)
+theme_override_colors/font_pressed_color = Color(0.517647, 1, 0.223529, 1)
+theme_override_font_sizes/font_size = 29
+text = "START"
+icon_alignment = 1
+
+[node name="Help" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.506
+anchor_top = 0.549
+anchor_right = 0.506
+anchor_bottom = 0.549
+offset_left = -107.9
+offset_top = -64.752
+offset_right = 95.1
+offset_bottom = 35.248
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 0.3241, 0.258944, 1)
+theme_override_colors/font_pressed_color = Color(0.517647, 1, 0.223529, 1)
+theme_override_font_sizes/font_size = 29
+text = "HELP"
+icon_alignment = 1
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.506
+anchor_top = 0.549
+anchor_right = 0.506
+anchor_bottom = 0.549
+offset_left = -107.9
+offset_top = 35.248
+offset_right = 95.1
+offset_bottom = 135.248
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 0.3241, 0.258944, 1)
+theme_override_colors/font_pressed_color = Color(0.517647, 1, 0.223529, 1)
+theme_override_font_sizes/font_size = 29
+text = "EXIT"
+icon_alignment = 1
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_cg1py")
+volume_db = -5.868
+autoplay = true
+
+[node name="HelpPopup" type="PopupPanel" parent="."]
+title = "HELP"
+position = Vector2i(437, 243)
+size = Vector2i(400, 300)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HelpPopup"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 296.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HelpPopup/VBoxContainer"]
+layout_mode = 2
+text = "ИГРА ЕЩЕ НЕ ОКОНЧЕНА!
+УПРАВЛЕНИЕ:
+-Space(Пробел)— Прыжок
+- A  — Влево
+- D  — Вправо
+- ЛКМ,Enter — Атака(Дэш вперед)"
+
+[node name="CloseHelp" type="Button" parent="HelpPopup/VBoxContainer"]
+layout_mode = 2
+text = "Закрыть
+"
+
+[node name="buttons" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_x8440")
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="HelpPopup/VBoxContainer/CloseHelp" to="." method="_on_close_help_pressed"]

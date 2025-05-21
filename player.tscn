@@ -1,6 +1,6 @@
-[gd_scene load_steps=65 format=3 uid="uid://c0ipyx55lreks"]
+[gd_scene load_steps=66 format=3 uid="uid://c0ipyx55lreks"]
 
-[ext_resource type="Script" uid="uid://sceqekip7uma" path="res://player.gd" id="1_jmr23"]
+[ext_resource type="Script" path="res://player.gd" id="1_jmr23"]
 [ext_resource type="Texture2D" uid="uid://davwl4s5krf34" path="res://The Female Adventurer - Free/Idle (3).png" id="1_yl60j"]
 [ext_resource type="Texture2D" uid="uid://cmod2temjgkea" path="res://The Female Adventurer - Free/walk (2).png" id="2_b8hjl"]
 [ext_resource type="Texture2D" uid="uid://crwesknj7635" path="res://The Female Adventurer - Free/pixil-frame-0 (2).png" id="3_1vjbk"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://chf8jpswf6g71" path="res://buttons/speed_button_pressed.png" id="10_3hd44"]
 [ext_resource type="Texture2D" uid="uid://c3vyjvicu7vg5" path="res://buttons/talk-removebg-preview.png" id="11_k3ene"]
 [ext_resource type="AudioStream" uid="uid://ci4ow0iwqskjq" path="res://audio/player/player)hurt2.MP3" id="12_2u27r"]
+[ext_resource type="AudioStream" uid="uid://jbhyixu6sc6w" path="res://dash.mp3" id="13_urp6f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0cto4"]
 radius = 13.0
@@ -326,10 +327,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xitv"]
-size = Vector2(88, 9)
+size = Vector2(63, 52)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cpf3p"]
-radius = 78.0064
+radius = 76.1475
 
 [sub_resource type="Animation" id="Animation_jkmn8"]
 resource_name = "Dash"
@@ -521,12 +522,12 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bydky"]
 _data = {
-&"Dash": SubResource("Animation_jkmn8"),
-&"Idle": SubResource("Animation_j7n8c"),
-&"Jump": SubResource("Animation_vxpsi"),
-&"RESET": SubResource("Animation_cghhw"),
-&"Walk": SubResource("Animation_xghfl"),
-&"death": SubResource("Animation_ixbtq")
+"Dash": SubResource("Animation_jkmn8"),
+"Idle": SubResource("Animation_j7n8c"),
+"Jump": SubResource("Animation_vxpsi"),
+"RESET": SubResource("Animation_cghhw"),
+"Walk": SubResource("Animation_xghfl"),
+"death": SubResource("Animation_ixbtq")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7572c"]
@@ -565,7 +566,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 z_index = 2
-position = Vector2(-45, -1)
+position = Vector2(2.5, -3)
 shape = SubResource("RectangleShape2D_7xitv")
 debug_color = Color(0.950203, 2.98411e-06, 0.569755, 0.42)
 
@@ -582,7 +583,7 @@ shape = SubResource("CircleShape2D_cpf3p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_bydky")
+"": SubResource("AnimationLibrary_bydky")
 }
 autoplay = "Idle"
 
@@ -636,13 +637,23 @@ visibility_mode = 1
 position = Vector2(-8580.65, -2685.48)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MobileControl/talk/Area2D"]
-position = Vector2(104.839, -72.5807)
+position = Vector2(314.521, -104.843)
 shape = SubResource("CircleShape2D_7572c")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MobileControl"]
+offset_left = -229.0
+offset_top = -376.0
+offset_right = -189.0
+offset_bottom = -336.0
 
 [node name="Sounds" type="Node2D" parent="."]
 
 [node name="hurt" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("12_2u27r")
+
+[node name="dash" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("13_urp6f")
+volume_db = -20.0
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
 [connection signal="body_entered" from="MobileControl/talk/Area2D" to="." method="_on_area_2d_body_entered"]

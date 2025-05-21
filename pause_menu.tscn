@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dq4vpftjl0vw0"]
+[gd_scene load_steps=2 format=3 uid="uid://dq4vpftjl0vw0"]
+
+[ext_resource type="AudioStream" uid="uid://1fbph3r8wvuk" path="res://audio/click-21156.mp3" id="1_hdmo1"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -9,6 +11,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="."]
+modulate = Color(0.403922, 1, 0, 1)
+self_modulate = Color(0.0862745, 0.988235, 0.133333, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -68,3 +72,38 @@ offset_right = 20.0
 offset_bottom = 41.0
 grow_horizontal = 2
 text = "MENU"
+
+[node name="HelpPopup" type="PopupPanel" parent="."]
+auto_translate_mode = 1
+title = "HELP"
+position = Vector2i(437, 243)
+size = Vector2i(400, 300)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HelpPopup"]
+modulate = Color(1, 1, 0, 1)
+self_modulate = Color(1, 0, 0, 1)
+top_level = true
+clip_children = 1
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 296.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HelpPopup/VBoxContainer"]
+layout_mode = 2
+text = "ИГРА ЕЩЕ НЕ ОКОНЧЕНА!
+УПРАВЛЕНИЕ:
+-Space(Пробел)— Прыжок
+- A  — Влево
+- D  — Вправо
+- ЛКМ,Enter — Атака(Дэш вперед)"
+
+[node name="CloseHelp" type="Button" parent="HelpPopup/VBoxContainer"]
+layout_mode = 2
+text = "Закрыть
+"
+
+[node name="buttons" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_hdmo1")

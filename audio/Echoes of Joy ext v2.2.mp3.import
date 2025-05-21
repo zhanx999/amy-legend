@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bvfwjmxvn7ywo"
+path="res://.godot/imported/Echoes of Joy ext v2.2.mp3-61b90dd8ddd3ab57cae206ad70c11cdb.mp3str"
+
+[deps]
+
+source_file="res://audio/Echoes of Joy ext v2.2.mp3"
+dest_files=["res://.godot/imported/Echoes of Joy ext v2.2.mp3-61b90dd8ddd3ab57cae206ad70c11cdb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

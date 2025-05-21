@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ijrgpygwkcg4"]
 
-[ext_resource type="Script" uid="uid://ceb0mp774lkqr" path="res://login_screen.gd" id="1_7ksck"]
-[ext_resource type="Texture2D" uid="uid://bn7kf86d2hpes" path="res://bg_login.jpg" id="2_jjkfj"]
+[ext_resource type="Script" path="res://login_screen.gd" id="1_7ksck"]
+[ext_resource type="Texture2D" uid="uid://cbqaxkksu0fka" path="res://audio/cat_medieval.jpg" id="2_7xvqn"]
 
 [node name="LoginScreen" type="Control"]
 layout_mode = 3
@@ -13,13 +13,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -133.0
-offset_top = -143.0
-offset_right = 1466.0
-offset_bottom = 757.0
+offset_left = -1.0
+offset_top = -277.0
+offset_right = 1847.0
+offset_bottom = 747.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_jjkfj")
+texture = ExtResource("2_7xvqn")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

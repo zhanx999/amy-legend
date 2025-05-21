@@ -1,14 +1,16 @@
 extends CharacterBody2D
 
+signal health_changed (new_health)
 # Константы
 const SPEED = 200.0
 const JUMP_VELOCITY = -300.0
 const DASH_SPEED = 450.0
 const DASH_DURATION = 0.3
 const ATTACK_COOLDOWN = 0.6
-const FALL_LIMIT = 600  # Порог, ниже которого игрок считается упавшим
+const FALL_LIMIT = 750  # Порог, ниже которого игрок считается упавшим
 @onready var talk_button = $MobileControl/talk
-var health = 3
+var health = 5
+@onready var dash = $Sounds/dash
 var alive = true
 @onready var anim = $AnimatedSprite2D
 @onready var anim_player = $AnimationPlayer
@@ -82,6 +84,7 @@ func start_dash_attack() -> void:
 	can_attack = false
 	attack_area.monitoring = true
 	anim.play("Dash")
+	dash.play()
 
 	# Определяем направление дэша
 	var dash_direction = Vector2.RIGHT if anim.flip_h else Vector2.LEFT
@@ -89,14 +92,19 @@ func start_dash_attack() -> void:
 	# Перемещаем AttackArea в сторону дэша
 	if anim.flip_h:
 		attack_area.position.x = 20  # Позиция справа от игрока
+		set_collision_layer_value(1,false)
+		set_collision_mask_value(2,false)
 	else:
 		attack_area.position.x = -20  # Позиция слева от игрока
+		set_collision_layer_value(1,false)
+		set_collision_mask_value(2,false)
 
 	velocity = dash_direction * DASH_SPEED
 
 	# Таймер для продолжительности дэш-атаки
 	await get_tree().create_timer(DASH_DURATION).timeout
-
+	set_collision_layer_value(1,true)
+	set_collision_mask_value(2,true)
 	velocity = Vector2.ZERO
 	attack_area.position.x = 0  # Возвращаем AttackArea в исходное положение
 	attack_area.monitoring = false
@@ -127,7 +135,9 @@ func take_damage(amount: int) -> void:
 	if not alive:
 		return  # Если игрок мертв, не уменьшаем здоровье
 	health -= amount
+	emit_signal("health_changed",health)
 	hurt_sound.play()
+	
 	anim.modulate= Color(1,0,0,1)
 	print("Player health: ", health)
 	
@@ -152,9 +162,6 @@ func die() -> void:
 	
 	# Переключаем сцену на главное меню
 	get_tree().change_scene_to_file("res://menu.tscn")
-
-
-
 
 
 

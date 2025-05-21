@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://l7gjxqnkmdq7"]
+
+[ext_resource type="Script" path="res://quote_display.gd" id="1_tiomd"]
+[ext_resource type="Texture2D" uid="uid://cbqaxkksu0fka" path="res://audio/cat_medieval.jpg" id="2_t4do1"]
+
+[sub_resource type="SystemFont" id="SystemFont_tiomd"]
+font_names = PackedStringArray("Calisto MT")
+font_weight = 325
+
+[sub_resource type="LabelSettings" id="LabelSettings_t4do1"]
+font = SubResource("SystemFont_tiomd")
+font_size = 22
+font_color = Color(1, 0.0588235, 0, 1)
+
+[node name="QuoteDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tiomd")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.362829, 0.362829, 0.362829, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_t4do1")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0.233157, 0.88252, 0.642172, 1)
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -258.0
+offset_top = -89.0
+offset_right = 262.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuoteLabel" type="Label" parent="Panel"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -233.0
+offset_top = 23.0
+offset_right = 250.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.992157, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.466667, 0, 0, 1)
+label_settings = SubResource("LabelSettings_t4do1")
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -46.0
+offset_right = 51.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Next"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Panel"]
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="request_completed" from="Panel/HTTPRequest" to="." method="_on_http_request_request_completed"]

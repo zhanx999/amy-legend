@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c67six0smmysu"]
 
-[ext_resource type="VideoStream" uid="uid://j2q8p27isyf4" path="res://vecteezy_love-tunnel-background_2007787.ogv" id="1_0l20w"]
-[ext_resource type="Script" uid="uid://oyr8761345nl" path="res://menu.gd" id="1_qdemu"]
+[ext_resource type="Script" path="res://menu.gd" id="1_qdemu"]
 [ext_resource type="AudioStream" uid="uid://dnxgt4rl5ldrx" path="res://audio/girl-in-red-we-fell-in-love-in-october-76934895_Fgk2fdPI.wav" id="3_cg1py"]
+[ext_resource type="PackedScene" uid="uid://cs7cts08rajp" path="res://bg_2.tscn" id="4_4hy44"]
 [ext_resource type="AudioStream" uid="uid://1fbph3r8wvuk" path="res://audio/click-21156.mp3" id="4_x8440"]
 
 [node name="Menu" type="Control"]
@@ -19,16 +19,6 @@ offset_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qdemu")
-
-[node name="background" type="VideoStreamPlayer" parent="."]
-z_index = -1
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 654.0
-stream = ExtResource("1_0l20w")
-autoplay = true
-expand = true
-loop = true
 
 [node name="Start" type="Button" parent="."]
 layout_mode = 1
@@ -121,6 +111,8 @@ text = "Закрыть
 
 [node name="buttons" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_x8440")
+
+[node name="BG2" parent="." instance=ExtResource("4_4hy44")]
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Help" to="." method="_on_help_pressed"]

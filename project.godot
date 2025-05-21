@@ -12,7 +12,9 @@ config_version=5
 
 config/name="FINAL ANDROID"
 run/main_scene="res://login_screen.tscn"
-config/features=PackedStringArray("4.4", "Mobile")
+config/features=PackedStringArray("4.3", "Mobile")
+boot_splash/bg_color=Color(0.927623, 0.722347, 0.700397, 1)
+boot_splash/image="res://44671786-3260-4db4-9d65-112c0834041f.png"
 config/icon="res://eeb313f5-1d25-481a-973a-4304da971a07.png"
 
 [autoload]
@@ -35,7 +37,6 @@ window/stretch/scale=1.1
 
 [editor]
 
-version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
 [editor_plugins]
@@ -69,6 +70,11 @@ talk={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":70,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+menu={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
 
 [input_devices]
 
@@ -84,6 +90,10 @@ locale/translations_pot_files=PackedStringArray("res://dialog/main.dialogue", "r
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="World"
 2d_physics/layer_5="Actionable"
+
+[network]
+
+limits/packet_peer_stream/max_buffer_po2=4096
 
 [rendering]
 
